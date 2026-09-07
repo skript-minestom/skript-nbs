@@ -5,4 +5,3 @@ api-version: 1.13
 depend: [Skript]
 authors: [hapily]
 website: https://github.com/skript-minestom/skript-nbs
-description: Play Note Block Studio (.nbs) songs via NoteBlockAPI on Skript-Minestom.
