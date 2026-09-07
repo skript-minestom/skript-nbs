@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 @Description("The sound category (source) a song player uses, such as master or records.")
 @Examples("""
 	set sound category of {_radio} to records
-	broadcast "%sound category of {_radio}%"""")
+	broadcast "%sound category of {_radio}%""")
 @Since("1.0.0")
 public class ExprSongPlayerSoundCategory extends SimplePropertyExpression<SongPlayer, Sound.Source> {
 

@@ -11,7 +11,7 @@ import com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer;
 @Description("Checks whether a song player is currently playing.")
 @Examples("""
 	if {_radio} is playing:
-		broadcast "music on"""")
+		broadcast "music on""")
 @Since("1.0.0")
 public class CondSongPlayerPlaying extends PropertyCondition<SongPlayer> {
 
