@@ -22,17 +22,17 @@ import org.jetbrains.annotations.Nullable;
 @Description("Plays an NBS song to players as radio or at a location. Optional volume (0-100), sound category, fade in/out, and repeating.")
 @Examples("""
 	play nbs song "demo.nbs" to player
-	play {_song} at {_loc} with range 32 to all players
-	play {_song} with volume 80 in records with fade in 2 seconds repeating to player""")
+	play song {_song} at {_loc} with range 32 to all players
+	play song {_song} with volume 80 in records with fade in 2 seconds repeating to player""")
 @Since("1.0.0")
 public class EffPlayNbs extends Effect {
 
 	static {
 		Skript.registerEffect(EffPlayNbs.class,
-				"play [nbs] [song] %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] with fade in %timespan% and fade out %timespan% [:repeating] (to|for) %players%",
-				"play [nbs] [song] %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] with fade in %timespan% [:repeating] (to|for) %players%",
-				"play [nbs] [song] %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] with fade out %timespan% [:repeating] (to|for) %players%",
-				"play [nbs] [song] %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] [:repeating] (to|for) %players%");
+				"play [nbs] song %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] with fade in %timespan% and fade out %timespan% [:repeating] (to|for) %players%",
+				"play [nbs] song %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] with fade in %timespan% [:repeating] (to|for) %players%",
+				"play [nbs] song %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] with fade out %timespan% [:repeating] (to|for) %players%",
+				"play [nbs] song %string/nbssong% [at %-point%] [with range %-number%] [with volume %-number%] [(in|from) %-soundcategory%] [:repeating] (to|for) %players%");
 	}
 
 	private Expression<?> songSource;
@@ -110,7 +110,7 @@ public class EffPlayNbs extends Effect {
 
 	@Override
 	public String toString(@Nullable Event event, boolean debug) {
-		StringBuilder sb = new StringBuilder("play ").append(songSource.toString(event, debug));
+		StringBuilder sb = new StringBuilder("play song ").append(songSource.toString(event, debug));
 		if (point != null) {
 			sb.append(" at ").append(point.toString(event, debug));
 		}

@@ -14,12 +14,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Song Player Repeat Mode")
 @Description("The repeat mode of a song player (none, one, or all).")
-@Examples("set repeat mode of {_radio} to one")
+@Examples("set song repeat mode of {_radio} to one")
 @Since("1.0.0")
 public class ExprSongPlayerRepeat extends SimplePropertyExpression<SongPlayer, RepeatMode> {
 
 	static {
-		register(ExprSongPlayerRepeat.class, RepeatMode.class, "[nbs] [song] [player] repeat[ ]mode", "songplayers");
+		register(ExprSongPlayerRepeat.class, RepeatMode.class, "[nbs] song [player] repeat[ ]mode", "songplayers");
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class ExprSongPlayerRepeat extends SimplePropertyExpression<SongPlayer, R
 
 	@Override
 	protected String getPropertyName() {
-		return "repeat mode";
+		return "song repeat mode";
 	}
 
 	@Override

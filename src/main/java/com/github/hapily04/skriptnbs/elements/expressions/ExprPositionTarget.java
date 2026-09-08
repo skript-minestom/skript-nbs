@@ -18,12 +18,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Position Song Player Target")
 @Description("The target location of a position song player. Setting keeps the existing instance when possible.")
-@Examples("set target location of {_pos} to {_loc}")
+@Examples("set song target location of {_pos} to {_loc}")
 @Since("1.0.0")
 public class ExprPositionTarget extends SimplePropertyExpression<SongPlayer, Point> {
 
 	static {
-		register(ExprPositionTarget.class, Point.class, "[nbs] [song] [player] target[ ]location", "songplayers");
+		register(ExprPositionTarget.class, Point.class, "[nbs] song [player] target[ ]location", "songplayers");
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class ExprPositionTarget extends SimplePropertyExpression<SongPlayer, Poi
 
 	@Override
 	protected String getPropertyName() {
-		return "target location";
+		return "song target location";
 	}
 
 	@Override

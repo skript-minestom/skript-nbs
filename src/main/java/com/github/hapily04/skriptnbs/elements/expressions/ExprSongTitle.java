@@ -10,12 +10,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("NBS Song Title")
 @Description("The title of an NBS song.")
-@Examples("broadcast title of {_song}")
+@Examples("broadcast song title of {_song}")
 @Since("1.0.0")
 public class ExprSongTitle extends SimplePropertyExpression<Song, String> {
 
 	static {
-		register(ExprSongTitle.class, String.class, "[nbs] [song] title", "nbssongs");
+		register(ExprSongTitle.class, String.class, "[nbs] song title", "nbssongs");
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ExprSongTitle extends SimplePropertyExpression<Song, String> {
 
 	@Override
 	protected String getPropertyName() {
-		return "title";
+		return "song title";
 	}
 
 	@Override

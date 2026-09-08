@@ -10,12 +10,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("NBS Song Length")
 @Description("The length of an NBS song in ticks.")
-@Examples("broadcast \"%length of {_song}%\"")
+@Examples("broadcast \"%song length of {_song}%\"")
 @Since("1.0.0")
 public class ExprSongLength extends SimplePropertyExpression<Song, Number> {
 
 	static {
-		register(ExprSongLength.class, Number.class, "[nbs] [song] length", "nbssongs");
+		register(ExprSongLength.class, Number.class, "[nbs] song length", "nbssongs");
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ExprSongLength extends SimplePropertyExpression<Song, Number> {
 
 	@Override
 	protected String getPropertyName() {
-		return "length";
+		return "song length";
 	}
 
 	@Override

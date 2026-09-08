@@ -14,12 +14,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Position Song Player Range")
 @Description("The hearing range of a position song player.")
-@Examples("set range of {_pos} to 32")
+@Examples("set song range of {_pos} to 32")
 @Since("1.0.0")
 public class ExprPositionRange extends SimplePropertyExpression<SongPlayer, Number> {
 
 	static {
-		register(ExprPositionRange.class, Number.class, "[nbs] [song] [player] (range|distance)", "songplayers");
+		register(ExprPositionRange.class, Number.class, "[nbs] song [player] (range|distance)", "songplayers");
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class ExprPositionRange extends SimplePropertyExpression<SongPlayer, Numb
 
 	@Override
 	protected String getPropertyName() {
-		return "range";
+		return "song range";
 	}
 
 	@Override

@@ -13,12 +13,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Song Player Tick")
 @Description("The current playback tick of a song player.")
-@Examples("set tick of {_radio} to 0")
+@Examples("set song tick of {_radio} to 0")
 @Since("1.0.0")
 public class ExprSongPlayerTick extends SimplePropertyExpression<SongPlayer, Number> {
 
 	static {
-		register(ExprSongPlayerTick.class, Number.class, "[nbs] [song] [player] tick", "songplayers");
+		register(ExprSongPlayerTick.class, Number.class, "[nbs] song [player] tick", "songplayers");
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ExprSongPlayerTick extends SimplePropertyExpression<SongPlayer, Num
 
 	@Override
 	protected String getPropertyName() {
-		return "tick";
+		return "song tick";
 	}
 
 	@Override

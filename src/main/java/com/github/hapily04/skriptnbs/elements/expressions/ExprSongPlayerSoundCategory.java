@@ -15,14 +15,14 @@ import org.jetbrains.annotations.Nullable;
 @Name("Song Player Sound Category")
 @Description("The sound category (source) a song player uses, such as master or records.")
 @Examples("""
-	set sound category of {_radio} to records
-	broadcast "%sound category of {_radio}%""")
+	set song sound category of {_radio} to records
+	broadcast "%song sound category of {_radio}%""")
 @Since("1.0.0")
 public class ExprSongPlayerSoundCategory extends SimplePropertyExpression<SongPlayer, Sound.Source> {
 
 	static {
 		register(ExprSongPlayerSoundCategory.class, Sound.Source.class,
-				"[nbs] [song] [player] sound[ ](category|source)", "songplayers");
+				"[nbs] song [player] sound[ ](category|source)", "songplayers");
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class ExprSongPlayerSoundCategory extends SimplePropertyExpression<SongPl
 
 	@Override
 	protected String getPropertyName() {
-		return "sound category";
+		return "song sound category";
 	}
 
 	@Override

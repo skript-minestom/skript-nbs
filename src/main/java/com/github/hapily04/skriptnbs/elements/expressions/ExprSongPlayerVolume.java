@@ -13,12 +13,12 @@ import org.jetbrains.annotations.Nullable;
 
 @Name("Song Player Volume")
 @Description("The volume of a song player (0-100).")
-@Examples("set volume of {_radio} to 80")
+@Examples("set song volume of {_radio} to 80")
 @Since("1.0.0")
 public class ExprSongPlayerVolume extends SimplePropertyExpression<SongPlayer, Number> {
 
 	static {
-		register(ExprSongPlayerVolume.class, Number.class, "[nbs] [song] [player] volume", "songplayers");
+		register(ExprSongPlayerVolume.class, Number.class, "[nbs] song [player] volume", "songplayers");
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class ExprSongPlayerVolume extends SimplePropertyExpression<SongPlayer, N
 
 	@Override
 	protected String getPropertyName() {
-		return "volume";
+		return "song volume";
 	}
 
 	@Override
