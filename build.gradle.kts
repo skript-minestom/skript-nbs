@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
 	compileOnly("com.github.hapily04:skript-minestom:1.0.0-alpha.41")
-	implementation("com.xxmicloxx:NoteBlockAPI:2026.09.06-26.2")
+	implementation("com.xxmicloxx:NoteBlockAPI:2026.09.08-26.2")
 }
 
 tasks.withType<JavaCompile>().configureEach {

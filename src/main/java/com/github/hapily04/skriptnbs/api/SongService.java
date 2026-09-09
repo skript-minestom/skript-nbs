@@ -15,7 +15,6 @@ import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.Instance;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 /**
  * Loads/caches NBS songs and builds song players for simple and advanced syntax.
@@ -40,7 +40,7 @@ public final class SongService {
 		try {
 			Files.createDirectories(songsFolder);
 		} catch (IOException e) {
-			logger.warn("Could not create songs folder {}: {}", songsFolder, e.getMessage());
+			logger.warning("Could not create songs folder " + songsFolder + ": " + e.getMessage());
 		}
 	}
 
@@ -60,15 +60,14 @@ public final class SongService {
 		}
 		Path resolved = resolvePath(path);
 		if (resolved == null || !Files.isRegularFile(resolved)) {
-			logger.warn("NBS song not found: {}", path);
+			logger.warning("NBS song not found: " + path);
 			return null;
 		}
 		try {
 			Song song = NBSDecoder.parse(resolved);
-			cache.put(key, song);
 			return song;
 		} catch (IOException e) {
-			logger.warn("Failed to load NBS song {}: {}", path, e.getMessage());
+			logger.warning("Failed to load NBS song " + path + ": " + e.getMessage());
 			return null;
 		}
 	}
@@ -175,7 +174,7 @@ public final class SongService {
 			Player[] players,
 			@Nullable Point point,
 			@Nullable Integer range,
-			@Nullable Byte volume,
+			@Nullable Float volume,
 			@Nullable Sound.Source soundSource,
 			@Nullable Integer fadeInTicks,
 			@Nullable Integer fadeOutTicks,
@@ -196,7 +195,7 @@ public final class SongService {
 				}
 			}
 			if (instance == null) {
-				logger.warn("Cannot play positional NBS song: no player is in an instance");
+				logger.warning("Cannot play positional NBS song: no player is in an instance");
 				return null;
 			}
 			PositionSongPlayer psp = new PositionSongPlayer(song);
@@ -210,7 +209,7 @@ public final class SongService {
 		}
 
 		if (volume != null) {
-			songPlayer.setVolume(volume);
+			songPlayer.setVolume(toApiVolume(volume));
 		}
 		if (soundSource != null) {
 			songPlayer.setSoundSource(soundSource);
@@ -258,6 +257,25 @@ public final class SongService {
 			return pos;
 		}
 		return new Pos(point.x(), point.y(), point.z());
+	}
+
+	/**
+	 * Converts Skript volume in the range {@code [0, 1]} to NoteBlockAPI's {@code 0-100} byte scale.
+	 */
+	public static byte toApiVolume(double volume) {
+		if (volume < 0) {
+			volume = 0;
+		} else if (volume > 1) {
+			volume = 1;
+		}
+		return (byte) Math.round(volume * 100);
+	}
+
+	/**
+	 * Converts NoteBlockAPI volume ({@code 0-100}) to Skript volume in the range {@code [0, 1]}.
+	 */
+	public static double fromApiVolume(byte volume) {
+		return volume / 100.0;
 	}
 
 	public static void setRange(SongPlayer player, int range) {

@@ -22,7 +22,7 @@ import com.github.hapily04.skriptnbs.elements.events.wrapper.SongStoppedWrapper;
 		broadcast "Song ended: %title of event-nbssong%"
 
 	on nbs song loop:
-		if volume of event-songplayer < 50:
+		if volume of event-songplayer < 0.5:
 			cancel event
 
 	on nbs player range change:

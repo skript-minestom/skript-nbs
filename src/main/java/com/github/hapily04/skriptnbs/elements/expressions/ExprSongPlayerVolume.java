@@ -7,13 +7,14 @@ import ch.njol.skript.doc.Name;
 import ch.njol.skript.doc.Since;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import ch.njol.util.coll.CollectionUtils;
+import com.github.hapily04.skriptnbs.api.SongService;
 import com.xxmicloxx.NoteBlockAPI.songplayer.SongPlayer;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Song Player Volume")
-@Description("The volume of a song player (0-100).")
-@Examples("set song volume of {_radio} to 80")
+@Description("The volume of a song player (0 to 1).")
+@Examples("set song volume of {_radio} to 0.8")
 @Since("1.0.0")
 public class ExprSongPlayerVolume extends SimplePropertyExpression<SongPlayer, Number> {
 
@@ -23,7 +24,7 @@ public class ExprSongPlayerVolume extends SimplePropertyExpression<SongPlayer, N
 
 	@Override
 	public @Nullable Number convert(SongPlayer player) {
-		return player.getVolume();
+		return SongService.fromApiVolume(player.getVolume());
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class ExprSongPlayerVolume extends SimplePropertyExpression<SongPlayer, N
 		if (mode != ChangeMode.SET || delta == null || delta.length == 0) {
 			return;
 		}
-		byte volume = ((Number) delta[0]).byteValue();
+		byte volume = SongService.toApiVolume(((Number) delta[0]).doubleValue());
 		for (SongPlayer player : getExpr().getArray(event)) {
 			player.setVolume(volume);
 		}

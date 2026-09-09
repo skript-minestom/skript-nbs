@@ -19,11 +19,11 @@ import org.bukkit.event.Event;
 import org.jetbrains.annotations.Nullable;
 
 @Name("Play NBS Song")
-@Description("Plays an NBS song to players as radio or at a location. Optional volume (0-100), sound category, fade in/out, and repeating.")
+@Description("Plays an NBS song to players as radio or at a location. Optional volume (0 to 1), sound category, fade in/out, and repeating.")
 @Examples("""
 	play nbs song "demo.nbs" to player
 	play song {_song} at {_loc} with range 32 to all players
-	play song {_song} with volume 80 in records with fade in 2 seconds repeating to player""")
+	play song {_song} with volume 0.8 in records with fade in 2 seconds repeating to player""")
 @Since("1.0.0")
 public class EffPlayNbs extends Effect {
 
@@ -91,7 +91,7 @@ public class EffPlayNbs extends Effect {
 		Timespan fadeInSpan = fadeIn == null ? null : fadeIn.getSingle(event);
 		Timespan fadeOutSpan = fadeOut == null ? null : fadeOut.getSingle(event);
 		Integer rangeVal = rangeNum == null ? null : rangeNum.intValue();
-		Byte volumeVal = volumeNum == null ? null : volumeNum.byteValue();
+		Float volumeVal = volumeNum == null ? null : volumeNum.floatValue();
 		Integer fadeInTicks = fadeInSpan == null ? null : (int) NumberUtils.ticksFrom(fadeInSpan);
 		Integer fadeOutTicks = fadeOutSpan == null ? null : (int) NumberUtils.ticksFrom(fadeOutSpan);
 
