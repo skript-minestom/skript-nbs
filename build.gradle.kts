@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.github.hapily04.skriptnbs"
-version = "1.0.2"
+version = "1.0.1"
 
 java {
 	toolchain {
